@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 0bb2376f313f9f644984c68d5a133a1b
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Mini 7 Condensed_40pt_st
+  fontNames:
+  - Mini 7 Condensed_40pt_st
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
