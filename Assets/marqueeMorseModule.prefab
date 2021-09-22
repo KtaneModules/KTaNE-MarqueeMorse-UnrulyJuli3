@@ -286,6 +286,7 @@ GameObject:
   - component: {fileID: 114664797286385982}
   - component: {fileID: 114742768330260812}
   - component: {fileID: 114835175950562952}
+  - component: {fileID: 114059204446945040}
   m_Layer: 0
   m_Name: marqueeMorseModule
   m_TagString: Untagged
@@ -1236,6 +1237,20 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4294950912
+--- !u!114 &114059204446945040
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1757026568720626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbf138ae161f672458e5d020df34b346, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TwitchHelpMessage: '!{0} transmit 101.2 | !{0} tx 103.5 mhz | !{0} submit intervention'
+  TwitchManualCode: 
+  TwitchAbandonModule: []
 --- !u!114 &114075331529297396
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1499,7 +1514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c70d329a164ab2946a38f9b440be3d3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ModBundleName: marqueeMorseModule
+  _ruleSeedId: 1
   LightSpawn: {fileID: 4885761517351016}
   LightPrefab: {fileID: 114161235071515978, guid: d814c042a234254449011e805becdd42,
     type: 2}

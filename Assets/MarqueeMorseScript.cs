@@ -1,9 +1,7 @@
 ﻿using KeepCoding;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using UnityEngine;
 
 public class MarqueeMorseScript : ModuleScript
@@ -20,7 +18,7 @@ public class MarqueeMorseScript : ModuleScript
 	private readonly MarqueeLight[] marqueeLights = new MarqueeLight[10];
 	private Queue<bool> currentMarqueeQueue;
 
-	private static readonly List<float> frequencies = new List<float>
+	internal static readonly List<float> frequencies = new List<float>
 	{
 		99.9f,
 		100.1f,
@@ -44,7 +42,7 @@ public class MarqueeMorseScript : ModuleScript
 		103.7f
 	};
 
-	private static readonly List<string> words = new List<string>
+	internal static readonly List<string> words = new List<string>
 	{
 		"intervention",
 		"consistently",
@@ -68,8 +66,8 @@ public class MarqueeMorseScript : ModuleScript
 		"representing"
 	};
 
-	private int correctFrequency;
-	private int currentFrequency;
+	internal int correctFrequency;
+	internal int currentFrequency;
 
 	private void Start()
 	{
@@ -167,13 +165,13 @@ public class MarqueeMorseScript : ModuleScript
 		InputLabel.text = frequencies[currentFrequency] + " MH<size=90>Z</size>";
 	}
 
-	private void MoveLeft()
+	internal void MoveLeft()
 	{
 		ButtonEffect(LeftButton);
 		MoveOffset(-1);
 	}
 
-	private void MoveRight()
+	internal void MoveRight()
 	{
 		ButtonEffect(RightButton);
 		MoveOffset(1);
@@ -186,7 +184,7 @@ public class MarqueeMorseScript : ModuleScript
 		DisplayCurrentFrequency();
 	}
 
-	private void Transmit()
+	internal void Transmit()
 	{
 		ButtonEffect(TransmitButton);
 		if (!IsActive || IsSolved) return;
@@ -203,46 +201,5 @@ public class MarqueeMorseScript : ModuleScript
 	private void ButtonEffect(KMSelectable selectable)
 	{
 		ButtonEffect(selectable, 0.4f, KMSoundOverride.SoundEffect.ButtonPress);
-	}
-
-	private readonly string TwitchHelpMessage = "!{0} transmit 101.2 | !{0} tx 103.5 mhz | !{0} submit intervention";
-
-	private IEnumerator ProcessTwitchCommand(string command)
-	{
-		string[] split = command.ToLowerInvariant().Split();
-		if (Regex.IsMatch(split[0], "submit|trans|transmit|tx|xmit"))
-		{
-			int submitIndex = -1;
-
-			string[] stringFrequencies = frequencies.Select(f => f.ToString()).ToArray();
-			if (stringFrequencies.Contains(split[1])) submitIndex = Array.IndexOf(stringFrequencies, split[1]);
-			else if (words.Contains(split[1])) submitIndex = Array.IndexOf(words.ToArray(), split[1]);
-
-			if (submitIndex > -1)
-			{
-				yield return null;
-				bool moveRight = submitIndex > currentFrequency;
-				while (currentFrequency != submitIndex)
-				{
-					if (moveRight) MoveRight();
-					else MoveLeft();
-					yield return new WaitForSeconds(0.1f);
-				}
-				Transmit();
-			}
-		}
-		yield break;
-	}
-
-	private IEnumerator TwitchHandleForcedSolve()
-	{
-		bool moveRight = correctFrequency > currentFrequency;
-		while (currentFrequency != correctFrequency)
-		{
-			if (moveRight) MoveRight();
-			else MoveLeft();
-			yield return new WaitForSeconds(0.1f);
-		}
-		Transmit();
 	}
 }
