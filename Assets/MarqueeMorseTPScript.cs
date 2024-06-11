@@ -10,7 +10,7 @@ public class MarqueeMorseTPScript : TPScript<MarqueeMorseScript>
 	public override IEnumerator Process(string command)
 	{
 		string[] split = command.ToLowerInvariant().Split();
-		if (Regex.IsMatch(split[0], "submit|trans|transmit|tx|xmit"))
+		if (Regex.IsMatch(split[0], "submit|trans|transmit|tx|xmit") && split.Length != 1)
 		{
 			int submitIndex = -1;
 
